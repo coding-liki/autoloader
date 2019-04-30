@@ -13,6 +13,7 @@ spl_autoload_register(function ($class) {
     /** Список директорий, в которых нужно искать класс*/
     $directories = [
         "",
+        "vendor",
         "codingliki/php-mvc/src"
     ];
     $auto_replace =[
