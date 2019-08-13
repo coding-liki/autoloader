@@ -30,16 +30,23 @@ spl_autoload_register(function ($class) {
     /** Пробегаем по директориям и загружаем файл при нахождении */
     foreach ($directories as $dir) {
         $file_path = $root.$dir.DIRECTORY_SEPARATOR.$class_file_name;
-        $file_path = $dir;
-
+        
         if ($dir != "" and $dir != "/") {
-            $file_path .= DIRECTORY_SEPARATOR;
+            $dir .= DIRECTORY_SEPARATOR;
         }
-
+        $file_path = $dir;
         $file_path .= $class_file_name;
 
         //echo "try find `$file_path`\n";
 
+        if (file_exists($file_path)) {
+            //echo "found it\n";
+            require_once $file_path;
+            return true;
+        }
+
+        $file_path = $dir;
+        $file_path .= str_replace("_", DIRECTORY_SEPARATOR,$class_file_name);
         if (file_exists($file_path)) {
             //echo "found it\n";
             require_once $file_path;
