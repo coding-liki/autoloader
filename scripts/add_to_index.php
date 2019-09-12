@@ -1,10 +1,10 @@
 <?php
 
-$path = __DIR__."../../../../index.php";
+$path = __DIR__."/../../../../index.php";
 
 $str = <<<PHP
 
-require_once "vendors/CodingLiki/Autoloader/autoloader.php";
+require_once "vendor/CodingLiki/Autoloader/autoloader.php";
 
 PHP;
 if(!file_exists($path)){
