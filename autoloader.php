@@ -21,11 +21,9 @@ spl_autoload_register(function ($class) {
         "Psr\\Container\\" =>  ""
     ];
     foreach ($auto_replace as $key => $value) {
-        # code...
         $class = str_replace($key, $value, $class);
     }
     $class_file_name = str_replace('\\', DIRECTORY_SEPARATOR, $class).'.php';
-    //echo "file name is '$class_file_name'\n";
 
     /** Пробегаем по директориям и загружаем файл при нахождении */
     foreach ($directories as $dir) {
@@ -37,10 +35,7 @@ spl_autoload_register(function ($class) {
         $file_path = $dir;
         $file_path .= $class_file_name;
 
-        //echo "try find `$file_path`\n";
-
         if (file_exists($file_path)) {
-            //echo "found it\n";
             require_once $file_path;
             return true;
         }
@@ -48,7 +43,6 @@ spl_autoload_register(function ($class) {
         $file_path = $dir;
         $file_path .= str_replace("_", DIRECTORY_SEPARATOR,$class_file_name);
         if (file_exists($file_path)) {
-            //echo "found it\n";
             require_once $file_path;
             return true;
         }
